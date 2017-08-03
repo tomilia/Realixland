@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var cart = require('./routes/cart');
 var search = require('./routes/search');
-var cat2 = require('./routes/cat2');
 var id=require('./routes/id');
 var mongoose=require('mongoose');
 
@@ -30,7 +29,6 @@ app.use('/', index);
 app.use('/cart', cart);
 app.use('/search', search);
 app.use('/id', id);
-app.use('/cat2',cat2);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

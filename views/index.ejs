@@ -87,12 +87,52 @@
                   </br>
                   <%- include cart.ejs %>
                 </div>
+                <!--second categories -->
                 <div id="menu1" class="tab-pane fade">
                   <div class="container-fluid">
+                    <ul class="article-list-basic">
+                      <% for(var i=0;i<data2.length;i++){ %>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/industrial-mech.jpg" alt="Industrial Mech" />
+                            </a>
+                            <div>
 
+                                <h2><a href="#"><%-data2[i].company %></a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <% } %>
+
+                    </ul>
    </div>
                 </div>
+                                <!--third categories -->
+                <div id="menu2" class="tab-pane fade">
+                  <div class="container-fluid">
+                    <ul class="article-list-basic">
+                      <% for(var i=0;i<data3.length;i++){ %>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/industrial-mech.jpg" alt="Industrial Mech" />
+                            </a>
+                            <div>
 
+                                <h2><a href="#"><%-data3[i].company %></a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <% } %>
+
+                    </ul>
+   </div>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                  <h3>Menu 3</h3>
+                  <p>Some content in menu 3.</p>
+                </div>
               </div>
 
 
@@ -161,6 +201,22 @@
   });
 
 </script>
+<script>
+$(document).ready(function() {
 
+  $(window).scroll(function () {
+      //if you hard code, then use console
+      //.log to determine when you want the
+      //nav bar to stick.
+      console.log($(window).scrollTop())
+    if ($(window).scrollTop() > 75) {
+      $('#pp').addClass('navbar-fixed');
+    }
+    else {
+      $('#pp').removeClass('navbar-fixed');
+    }
+  });
+});
+</script>
 
 </html>

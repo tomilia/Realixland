@@ -4,8 +4,8 @@
     <div class="container-fluid">
 
       <ul class="nav nav-tabs" role="tablist">
-                                              <li role="presentation" ><a href="/" >屌你老母1</a></li>
-                                              <li ><a href="/cat2" >屌你老母2</a></li>
+                                              <li role="presentation" class="active"><a href="#index" aria-controls="index" role="tab" data-toggle="tab">屌你老母1</a></li>
+                                              <li ><a href="#menu1" aria-controls="menu1" role="tab" data-toggle="tab">屌你老母2</a></li>
                                               <li role="presentation"><a href="#menu2" aria-controls="messages" role="tab" data-toggle="tab">屌你老母3</a></li>
                                               <li role="presentation"><a href="#menu3" aria-controls="settings" role="tab" data-toggle="tab">屌你老母4</a></li>
                                               <li role="presentation"><a href="#settings2" aria-controls="settings" role="tab" data-toggle="tab">屌你老母5</a></li>
@@ -15,3 +15,48 @@
     </div>
 
 </div>
+
+<script>
+$(function () {
+
+  $("#company").autocomplete({
+      source: function (request, response) {
+         $.ajax({
+            url: "/search",
+            type: "GET",
+            data: request,  // request is the value of search input
+            success: function (data) {
+              // Map response values to fiedl label and value
+               response($.map(data, function (el) {
+                  return {
+                     label: el.company,
+                     value: el._id
+                  };
+                  }));
+               }
+            });
+         },
+
+         // The minimum number of characters a user must type before a search is performed.
+         minLength: 3,
+
+         // set an onFocus event to show the result on input field when result is focused
+         focus: function (event, ui) {
+            this.value = ui.item.label;
+            // Prevent other event from not being execute
+            event.preventDefault();
+         },
+         select: function (event, ui) {
+            // Prevent value from being put in the input:
+            this.value = ui.item.label;
+            // Set the id to the next input hidden field
+            $(this).next("input").val(ui.item.value);
+            // Prevent other event from not being execute
+            event.preventDefault();
+            // optionnal: submit the form after field has been filled up
+
+         }
+  });
+
+});
+</script>
