@@ -84,8 +84,7 @@
                     <div class="tab-content">
                 <div id="index" class="tab-pane fade in active">
                   <%-include photoslider.ejs%>
-                  </br>
-                  <%- include cart.ejs %>
+                    </br>
                 </div>
                 <!--second categories -->
                 <div id="menu1" class="tab-pane fade">
@@ -100,7 +99,7 @@
 
                                 <h2><a href="#"><%-data2[i].company %></a></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
-                                <a href="#" class="read-more">Read more &rarr;</a>
+                                <a href="#" class="read-more"><%-data2[i].id%></a>
                             </div>
                         </li>
                         <% } %>
@@ -109,7 +108,7 @@
    </div>
                 </div>
                                 <!--third categories -->
-                <div id="menu2" class="tab-pane fade">
+                <div id="menu2" class="tab-pane fade ">
                   <div class="container-fluid">
                     <ul class="article-list-basic">
                       <% for(var i=0;i<data3.length;i++){ %>
@@ -121,7 +120,7 @@
 
                                 <h2><a href="#"><%-data3[i].company %></a></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
-                                <a href="#" class="read-more">Read more &rarr;</a>
+                                <a href="#" class="read-more"><%-data3[i].id%></a>
                             </div>
                         </li>
                         <% } %>
