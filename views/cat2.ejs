@@ -80,15 +80,22 @@
           <div class="container-fluid">
               <div class="row">
                   <div class="col-lg-12">
+                    <ul class="article-list-basic">
+                                <% for(var i=0;i<data.length;i++){ %>
+                  <li>
+                      <a href="#">
+                          <img src="stylesheets/images/pictures/industrial-mech.jpg" alt="Industrial Mech" />
+                      </a>
+                      <div>
 
-              <div class="tab-content">
-
-                <div id="menu2" class="tab-pane fade in active">
-                  <h3>Menu 2</h3>
-                  <p>Some content in menu 2.</p>
-                </div>
-              </div>
-
+                          <h2><a href="#"><%-data[i].company %></a></h2>
+                          <p><%-data[i].id%></p>
+                          <p><%-data[i].address%></p>
+                          <a href="#" class="read-more">Read more &rarr;</a>
+                      </div>
+                  </li>
+                  <% } %>
+                </ul>
                   </div>
               </div>
           </div>
