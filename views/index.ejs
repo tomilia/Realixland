@@ -1,0 +1,285 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/css/article-lists/article-list-basic.css">
+  <script src="stylesheets/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/trial.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/funky.css">
+</head>
+<body>
+
+  <div class="row" id="test">
+    <div class="col-sm-10" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
+        <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
+        <div class="col-sm-1" id="tr2">  <a class="btn btn-danger btn-outline" id="join"><i class="fa fa-users" aria-hidden="true"></i> 加入我們</a></div>
+
+  </div>
+<%- include nav/navbar.ejs %>
+
+  <div id="wrapper" >
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <form>
+<div class="form-group">
+  <label for="formGroupExampleInput">店舖所在區域</label>
+  <select class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+</div>
+<div class="form-group">
+  <label for="formGroupExampleInput2">店舖種類</label>
+  <select class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+</div>
+<div class="form-group">
+  <label for="amount">價錢：</label>
+    <input type="text" id="amount" readonly style="border:0; color:#f6931f;background-color:#fcfcfc; font-weight:bold;">
+    <div id="slider-range"></div>
+</div>
+<div class="form-group">
+  <label for="amount">評分：</label>
+<div id="star-rating">
+    <input type="radio" name="example" class="rating" value="1" />
+    <input type="radio" name="example" class="rating" value="2" />
+    <input type="radio" name="example" class="rating" value="3" />
+    <input type="radio" name="example" class="rating" value="4" />
+    <input type="radio" name="example" class="rating" value="5" />
+</div>
+</div>
+<button type="submit" class="btn btn-primary sumbitform">快速搜尋</button>
+</form>
+      </div>
+
+
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-lg-12">
+
+                    <div class="tab-content">
+                <div id="index" class="tab-pane fade in active">
+                  <%-include photoslider.ejs%>
+                  </br>
+                  <%- include cart.ejs %>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                  <div class="container-fluid">
+                    <ul class="article-list-basic">
+
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/industrial-mech.jpg" alt="Industrial Mech" />
+                            </a>
+                            <div>
+
+                                <h2><a href="#"><%-data[0].company %></a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sahale-wa.jpg"  alt="Sahale Wa" />
+                            </a>
+                            <div>
+                                <h2><a href="#"><data[1].id</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/sands-of-life.jpg"  alt="Sands of Life" />
+                            </a>
+                            <div>
+                                <h2><a href="#">Interesting article title</a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="#" class="read-more">Read more &rarr;</a>
+                            </div>
+                        </li>
+
+                    </ul>
+   </div>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                  <h3>Menu 2</h3>
+                  <p>Some content in menu 2.</p>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                  <h3>Menu 3</h3>
+                  <p>Some content in menu 3.</p>
+                </div>
+              </div>
+
+
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+
+
+  <!-- /#wrapper -->
+
+
+
+  <!-- Menu Toggle Script -->
+  <script>
+      $("#wrapper").toggleClass("toggled");
+  </script>
+
+
+<hr/>
+<div class="container-fluid">
+
+<div style="text-align:center">Copyright</div>
+</div>
+</div>
+</body>
+<script>
+  $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 1000,
+      values: [ 75, 300 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  } );
+  </script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAz0TplEBh9ReJajTiQf83P5XFuNbEaqKE",
+    authDomain: "test-9ecd5.firebaseapp.com",
+    databaseURL: "https://test-9ecd5.firebaseio.com",
+    projectId: "test-9ecd5",
+    storageBucket: "test-9ecd5.appspot.com",
+    messagingSenderId: "1038036561118"
+  };
+  firebase.initializeApp(config);
+</script>
+<script language="JavaScript" type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 5000
+    });
+    $('.dropdown-menu').on({
+    "click":function(e){
+      console.log(e.isPropagationStopped());
+      e.stopPropagation();
+    }
+});
+  });
+
+</script>
+<script>
+$(document).ready(function() {
+
+  $(window).scroll(function () {
+      //if you hard code, then use console
+      //.log to determine when you want the
+      //nav bar to stick.
+      console.log($(window).scrollTop())
+    if ($(window).scrollTop() > 75) {
+      $('#pp').addClass('navbar-fixed');
+    }
+    else {
+      $('#pp').removeClass('navbar-fixed');
+    }
+  });
+});
+</script>
+
+</html>

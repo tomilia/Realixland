@@ -1,0 +1,63 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/trial.css">
+
+</head>
+<body>
+
+<%-include nav/navbar.ejs %>
+      <div class="container">
+        <div class="row">
+          <div class="well col-lg-12 " style="margin-top:75px;" >
+            <h5>篩選：</h5>
+
+        </div>
+      </div>
+      <h4>Values returned:<%-data.length%></h4>
+      <% for(var i=0;i<data.length;i++){ %>
+
+        <hr></br>
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-lg-6">
+                <h3><%=data[i].company%></h3>
+
+                <h4><%=data[i].address%></h4>
+                <div class="rating hidden-sm">
+                    <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                    </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                    </i><i class="fa fa-star"></i>
+
+                </div>
+                <a class="btn btn-primary" href="/id" ><%=data[i].id%></a>
+            </div>
+
+        </div>
+
+        <% } %>
+        </div>
+</body>
+<script language="JavaScript" type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 5000
+    });
+    $('.dropdown-menu').on({
+    "click":function(e){
+      e.stopPropagation();
+    }
+});
+  });
+
+</script>
+</html>
