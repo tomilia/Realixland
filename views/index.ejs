@@ -99,7 +99,7 @@
 
                                 <h2><a href="#"><%-data2[i].company %></a></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
-                                <a href="#" class="read-more"><%-data2[i].id%></a>
+                                <a href="/id/<%= data2[i].id %>" class="read-more"><%-data2[i].id%></a>
                             </div>
                         </li>
                         <% } %>
@@ -120,7 +120,7 @@
 
                                 <h2><a href="#"><%-data3[i].company %></a></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
-                                <a href="#" class="read-more"><%-data3[i].id%></a>
+                                <a href="/id/<%= data3[i].id %>" class="read-more" id="<%=data3[i].id%>"><%-data3[i].id%></a>
                             </div>
                         </li>
                         <% } %>
@@ -217,5 +217,9 @@ $(document).ready(function() {
   });
 });
 </script>
-
+<script>
+$('.read-more').mouseover(function() {
+   console.log(this.id);
+});
+</script>
 </html>
