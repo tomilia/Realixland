@@ -50,9 +50,5 @@ router.get('/', function(req,res,next){
 
 
 });
-router.post('/searchtry', function (req, res) {
-    // If it's not showing up, just use req.body to see what is actually being passed.
-    console.log(req.body.select2);
-    console.log(req.body.example);
-});
+
 module.exports = router;
