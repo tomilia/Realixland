@@ -33,7 +33,7 @@
 
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
-        <form>
+        <form action="/searchtry" method="post">
 <div class="form-group">
   <label for="formGroupExampleInput">店舖所在區域</label>
   <select class="form-control" id="exampleSelect1">
@@ -46,7 +46,7 @@
 </div>
 <div class="form-group">
   <label for="formGroupExampleInput2">店舖種類</label>
-  <select class="form-control" id="exampleSelect1">
+  <select class="form-control" id="exampleSelect1" name="select2">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -61,7 +61,7 @@
 </div>
 <div class="form-group">
   <label for="amount">評分：</label>
-<div id="star-rating">
+<div id="star-rating" name="rating">
     <input type="radio" name="example" class="rating" value="1" />
     <input type="radio" name="example" class="rating" value="2" />
     <input type="radio" name="example" class="rating" value="3" />
