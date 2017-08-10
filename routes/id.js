@@ -8,7 +8,7 @@ router.get('/:id', function(req, res, next) {
   var xd=req.params.id;
   CompData.find({_id:req.params.id}).exec(function (err, docs) {
       if (err) {
-          throw cb(err);
+          throw err;
       }
 res.render("id",{data:docs});
       // do some stuff with docs & pass or directly pass it

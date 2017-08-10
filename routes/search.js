@@ -4,10 +4,16 @@ var CompData=require ('../models/companymodel');
 
 /* GET search page. */
 
-router.post('/', function(req,res,next){
-console.log(req.body.select2);
-console.log(req.body.price);
-console.log(req.body.example);
+router.get('/', function(req,res,next){
+eval(require('locus'));
+  CompData.find({categories:req.body.select2}).exec(function (err, docs) {
+      if (err) {
+          throw cb(err);
+      }
+res.render("search",{data:docs});
+console.log(docs[0]);
+      // do some stuff with docs & pass or directly pass it
+  });
 });
 
 module.exports = router;

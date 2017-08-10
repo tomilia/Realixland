@@ -7,6 +7,8 @@
   <meta name="author" content="">
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
   <link rel="stylesheet" href="stylesheets/bootstrap.css">
   <link rel="stylesheet" href="stylesheets/css/article-lists/article-list-basic.css">
@@ -20,14 +22,14 @@
 </head>
 <body>
 
-  <div class="row" id="test">
+  <div class="row navbar " id="test">
     <div class="col-sm-10" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
     <div class="col-sm-1 " id="tr0"><a class="btn btn-success" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 會員登入</a></div>
         <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
         <div class="col-sm-1" id="tr2">  <a class="btn btn-danger btn-outline" id="join"><i class="fa fa-users" aria-hidden="true"></i> 加入我們</a></div>
 
   </div>
-<%- include nav/navbar.ejs %>
+
 
   <div id="wrapper" >
 
@@ -36,7 +38,7 @@
         <form action="/search" method="post">
 <div class="form-group">
   <label for="formGroupExampleInput">店舖所在區域</label>
-  <select class="form-control" id="exampleSelect1">
+  <select class="selectpicker" id="exampleSelect1">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -46,12 +48,9 @@
 </div>
 <div class="form-group">
   <label for="formGroupExampleInput2">店舖種類</label>
-  <select class="form-control" id="exampleSelect1" name="select2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+  <select class="selectpicker" id="exampleSelect1" name="select2">
+      <option>a</option>
+      <option>b</option>
     </select>
 </div>
 <div class="form-group">
@@ -69,10 +68,10 @@
     <input type="radio" name="example" class="rating" value="5" />
 </div>
 </div>
-<button type="submit" class="btn btn-primary sumbitform">快速搜尋</button>
+<button type="submit" class="btn btn-primary sumbitform" id="sub">快速搜尋</button>
 </form>
       </div>
-
+<%- include nav/navbar.ejs %>
 
       <!-- /#sidebar-wrapper -->
 
@@ -100,7 +99,7 @@
 
                                 <h2><a href="#"><%-data2[i].company %></a></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
-                                <a href="/id/<%= data2[i].id %>" class="read-more"><%-data2[i].id%></a>
+                                <a href="/id/<%= data2[i].id %>" class="read-more" id="idclick"><%-data2[i].id%></a>
                             </div>
                         </li>
                         <% } %>
@@ -159,6 +158,7 @@
 <div style="text-align:center">Copyright</div>
 </div>
 </div>
+<div class="modal"><!-- Place at bottom of page --></div>
 </body>
 <script>
   $( function() {
@@ -176,16 +176,21 @@
   } );
   </script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAz0TplEBh9ReJajTiQf83P5XFuNbEaqKE",
-    authDomain: "test-9ecd5.firebaseapp.com",
-    databaseURL: "https://test-9ecd5.firebaseio.com",
-    projectId: "test-9ecd5",
-    storageBucket: "test-9ecd5.appspot.com",
-    messagingSenderId: "1038036561118"
-  };
-  firebase.initializeApp(config);
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+
+     ajaxStop: function() { $body.removeClass("loading"); }
+});
+$("#sub").on("click", function(){
+
+    $.post("/search");
+});
+$("#idclick").on("click", function(){
+
+    $.post("/id");
+});
 </script>
 <script language="JavaScript" type="text/javascript">
   $(document).ready(function(){

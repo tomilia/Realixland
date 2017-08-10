@@ -1,52 +1,189 @@
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/css/article-lists/article-list-basic.css">
+  <script src="stylesheets/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/trial.css">
-
+<link rel="stylesheet" type="text/css" href="stylesheets/funky.css">
 </head>
 <body>
 
-<%-include nav/navbar.ejs %>
-      <div class="container">
-        <div class="row">
-          <div class="well col-lg-12 " style="margin-top:75px;" >
-            <h5>篩選：</h5>
+  <div class="row navbar navbar-fixed-top" id="test">
+    <div class="col-sm-10" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
+    <div class="col-sm-1 " id="tr0"><a class="btn btn-success" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 會員登入</a></div>
+        <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
+        <div class="col-sm-1" id="tr2">  <a class="btn btn-danger btn-outline" id="join"><i class="fa fa-users" aria-hidden="true"></i> 加入我們</a></div>
 
-        </div>
+  </div>
+<h2 style="text-align:center;">Search Result:<%-data.length%></h2>
+
+  <div id="wrapper" >
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <form action="/search" method="post">
+<div class="form-group">
+  <label for="formGroupExampleInput">店舖所在區域</label>
+  <select class="selectpicker" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+</div>
+<div class="form-group">
+  <label for="formGroupExampleInput2">店舖種類</label>
+  <select class="selectpicker" id="exampleSelect1" name="select2">
+      <option>a</option>
+      <option>b</option>
+    </select>
+</div>
+<div class="form-group">
+  <label for="amount">價錢：</label>
+    <input type="text" id="amount" readonly style="border:0; color:#f6931f;background-color:#fcfcfc; font-weight:bold;" name="price">
+    <div id="slider-range"></div>
+</div>
+<div class="form-group">
+  <label for="amount">評分：</label>
+<div id="star-rating" name="rating">
+    <input type="radio" name="example" class="rating" value="1" />
+    <input type="radio" name="example" class="rating" value="2" />
+    <input type="radio" name="example" class="rating" value="3" />
+    <input type="radio" name="example" class="rating" value="4" />
+    <input type="radio" name="example" class="rating" value="5" />
+</div>
+</div>
+<button type="submit" class="btn btn-primary sumbitform" id="sub">快速搜尋</button>
+</form>
       </div>
-      <h4>Values returned:<%-data.length%></h4>
-      <% for(var i=0;i<data.length;i++){ %>
 
-        <hr></br>
-        <div class="row">
 
-            <div class="col-lg-6 col-md-6">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-                </a>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+
+      <div class="container-fluid">
+        <div class="row" style="padding-left:65px; position:relative;">
+          <div class="col-xs-3" >
+            <div class="form-group">
+              <select class="selectpicker" multiple title="按評分排序">
+                <option>Mustard</option>
+                <option>Ketchup</option>
+                <option>Relish</option>
+              </select>
             </div>
+          </div>
+          <div class="col-xs-3">
+            <div class="form-group">
+              <select class="selectpicker" multiple title="按日期排序">
+                <option>Mustard</option>
+                <option>Ketchup</option>
+                <option>Relish</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-            <div class="col-lg-6">
-                <h3><%=data[i].company%></h3>
 
-                <h4><%=data[i].address%></h4>
-                <div class="rating hidden-sm">
-                    <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
-                    </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
-                    </i><i class="fa fa-star"></i>
+              <div class="row">
+                  <div class="col-lg-12">
 
+                    <div class="tab-content">
+
+                <!--second categories -->
+                <div id="index" class="tab-pane fade in active">
+                  <div class="container-fluid">
+                    <ul class="article-list-basic">
+                      <% for(var i=0;i<data.length;i++){ %>
+                        <li>
+                            <a href="#">
+                                <img src="stylesheets/images/pictures/industrial-mech.jpg" alt="Industrial Mech" />
+                            </a>
+                            <div>
+
+                                <h2><a href="#"><%-data[i].company %></a></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu lacus mattis laoreet diam a, volutpat magna.</p>
+                                <a href="/id/<%= data[i].id %>" class="read-more"><%-data[i].id%></a>
+                            </div>
+                        </li>
+                        <% } %>
+
+                    </ul>
+   </div>
                 </div>
-                <a class="btn btn-primary" href="/id" ><%=data[i].id%></a>
-            </div>
 
-        </div>
 
-        <% } %>
-        </div>
+              </div>
+
+
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+
+
+  <!-- /#wrapper -->
+
+
+
+  <!-- Menu Toggle Script -->
+  <script>
+      $("#wrapper").toggleClass("toggled");
+  </script>
+
+
+<hr/>
+<div class="container-fluid">
+
+<div style="text-align:center">Copyright</div>
+</div>
+</div>
+<div class="modal"><!-- Place at bottom of page --></div>
 </body>
+<script>
+  $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 1000,
+      values: [ 75, 300 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  } );
+  </script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAz0TplEBh9ReJajTiQf83P5XFuNbEaqKE",
+    authDomain: "test-9ecd5.firebaseapp.com",
+    databaseURL: "https://test-9ecd5.firebaseio.com",
+    projectId: "test-9ecd5",
+    storageBucket: "test-9ecd5.appspot.com",
+    messagingSenderId: "1038036561118"
+  };
+  firebase.initializeApp(config);
+</script>
 <script language="JavaScript" type="text/javascript">
   $(document).ready(function(){
     $('.carousel').carousel({
@@ -54,10 +191,24 @@
     });
     $('.dropdown-menu').on({
     "click":function(e){
+      console.log(e.isPropagationStopped());
       e.stopPropagation();
     }
 });
   });
 
+</script>
+<script>
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+
+     ajaxStop: function() { $body.removeClass("loading"); }
+});
+$("#sub").on("click", function(){
+
+    $.get("/search");
+});
 </script>
 </html>
