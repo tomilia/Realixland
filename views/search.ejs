@@ -35,7 +35,7 @@
 
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
-        <form action="/search" method="post">
+        <form action="/search" method="get">
 <div class="form-group">
   <label for="formGroupExampleInput">店舖所在區域</label>
   <select class="selectpicker" id="exampleSelect1">
@@ -48,7 +48,7 @@
 </div>
 <div class="form-group">
   <label for="formGroupExampleInput2">店舖種類</label>
-  <select class="selectpicker" id="exampleSelect1" name="select2">
+  <select class="selectpicker" id="exampleSelect1" name="categories">
       <option>a</option>
       <option>b</option>
     </select>
@@ -210,5 +210,6 @@ $("#sub").on("click", function(){
 
     $.get("/search");
 });
+
 </script>
 </html>
