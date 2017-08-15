@@ -3,18 +3,10 @@ body {
   margin:0 auto;
 
 }
-.modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 )
-                url('http://i.stack.imgur.com/FhHRx.gif')
-                50% 50%
-                no-repeat;
+select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
 }
 
 /* When the body has the loading class, we turn
@@ -22,7 +14,34 @@ body {
 body.loading {
     overflow: hidden;
 }
+.select_join {
 
+width: 170px;
+  height: 28px;
+  overflow: hidden;
+  background: url('http://s24.postimg.org/lyhytocf5/dropdown.png') no-repeat right #FEFEFE;
+  border: #FEFEFE 1px solid;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow: inset 0px 0px 10px 1px #FEFEFE;
+box-shadow: inset 0px 0px 10px 1px #FEFEFE;
+  }
+.select_join select {
+
+  background: transparent;
+  width: 170px;
+  font-size:7pt;
+  color:grey;
+  border: 0;
+  border-radius: 0;
+  height: 28px;
+  -webkit-appearance: none;
+
+  }
+  .select_join select:focus {
+   outline: none;
+
+}
 /* Anytime the body has the loading class, our
    modal element will be visible */
 body.loading .modal {
@@ -67,7 +86,7 @@ background-color: #ffffff;
     width: 100%;
     text-align: center;
   }
-  .nav-tabs { border-bottom: 5px hidden #fff !important;padding-left:30%; padding-top: 10px;}
+  .nav-tabs { border-bottom: 5px hidden #fff !important; padding-top: 10px;}
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
     .nav-tabs > li > a {padding-left:15px; border: hidden; color: #000; }
         .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: hidden; color: #009900 !important; background: transparent; }

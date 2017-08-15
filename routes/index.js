@@ -51,7 +51,6 @@ router.get('/', function(req,res,next){
 
 });
 router.get('/search', function(req,res,next){
-
   var price=req.query.price;
   var newPrice = price.replace(/[^0-9\.]/g, ' ');
   var ress = newPrice.split(" ");
@@ -60,6 +59,7 @@ router.get('/search', function(req,res,next){
         if (err) {
             throw cb(err);
         }
+
   res.render("search",{data:docs});
 });
 

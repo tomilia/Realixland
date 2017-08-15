@@ -6,16 +6,17 @@
 
  body {
     overflow-x: hidden;
+
  }
 
 /* Toggle Styles */
 
 #wrapper {
     padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
 #wrapper.toggled {
@@ -31,21 +32,20 @@
 }
 #sidebar-wrapper {
 
-    z-index: 1000;
-    position: fixed;
+    z-index: 0;
+    position: absolute;
     left: 250px;
-    width: 0
     height: 365px;
     margin-left: -234px;
-    overflow-y: auto;
+width:100%
     background:#fcfcfc;
     border-radius: 10px;
 
 
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
      text-align: center;
 }
 #sidebar-wrapper:hover{
@@ -128,7 +128,7 @@ form {
     }
 
     #sidebar-wrapper {
-        width: 0;
+        width: 260px;
     }
 
     #wrapper.toggled #sidebar-wrapper {

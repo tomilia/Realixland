@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-
+<script src="stylesheets/jquery.nice-select.js"></script>
+<link rel="stylesheet" href="stylesheets/nice-select.css">
   <link rel="stylesheet" href="stylesheets/bootstrap.css">
   <link rel="stylesheet" href="stylesheets/css/article-lists/article-list-basic.css">
   <script src="stylesheets/jquery-ui.js"></script>
@@ -24,7 +24,7 @@
 
   <div class="row navbar " id="test">
     <div class="col-sm-10" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
-    <div class="col-sm-1 " id="tr0"><a class="btn btn-success" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 會員登入</a></div>
+    <div class="col-sm-1 " id="tr0"><a class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-users" aria-hidden="true"></i> 會員登入</a></div>
         <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
         <div class="col-sm-1" id="tr2">  <a class="btn btn-danger btn-outline" id="join"><i class="fa fa-users" aria-hidden="true"></i> 加入我們</a></div>
 
@@ -36,41 +36,52 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
         <form action="/search" method="get">
-<div class="form-group">
-  <label for="formGroupExampleInput">店舖所在區域</label>
-  <select class="selectpicker" id="exampleSelect1">
+      <div class="form-group">
+      <label for="exampleSelect1">店舖所在區域</label>
+      <select id="exampleSelect1" name="location">
       <option>1</option>
       <option>2</option>
       <option>3</option>
       <option>4</option>
       <option>5</option>
-    </select>
-</div>
-<div class="form-group">
-  <label for="formGroupExampleInput2">店舖種類</label>
-  <select class="selectpicker" id="exampleSelect1" name="categories">
+      </select>
+      </div>
+      <div class="form-group">
+      <label for="exampleSelect1">店舖種類</label>
+      <select id="exampleSelect1" name="categories">
       <option>a</option>
       <option>b</option>
-    </select>
-</div>
-<div class="form-group">
-  <label for="amount">價錢：</label>
-    <input type="text" id="amount" readonly style="border:0; color:#f6931f;background-color:#fcfcfc; font-weight:bold;" name="price">
-    <div id="slider-range"></div>
-</div>
-<div class="form-group">
-  <label for="amount">評分：</label>
-<div id="star-rating" name="rating">
-    <input type="radio" name="example" class="rating" value="1" />
-    <input type="radio" name="example" class="rating" value="2" />
-    <input type="radio" name="example" class="rating" value="3" />
-    <input type="radio" name="example" class="rating" value="4" />
-    <input type="radio" name="example" class="rating" value="5" />
-</div>
-</div>
-<button type="submit" class="btn btn-primary sumbitform" id="sub">快速搜尋</button>
-</form>
+      </select>
       </div>
+      <div class="form-group">
+      <label for="price">平均消費：</label>
+      <select class="select_join" name="price" id="price">
+      <option selected value="200">人民幣200</option>
+      <option value="400">人民幣400</option>
+      <option value="600">人民幣600</option>
+      <option value="800">人民幣800</option>
+      <option value="1000">人民幣1000</option>
+      <option value="1200">人民幣1200</option>
+      </select>
+      </div>
+      <div class="form-group">
+      <label for="amount">評分：</label>
+      <div id="star-rating" name="rating">
+      <input type="radio" name="example" class="rating" value="1" />
+      <input type="radio" name="example" class="rating" value="2" />
+      <input type="radio" name="example" class="rating" value="3" />
+      <input type="radio" name="example" class="rating" value="4" />
+      <input type="radio" name="example" class="rating" value="5" />
+      </div>
+      </div>
+      <button type="submit" class="btn btn-primary sumbitform" id="sub">快速搜尋</button>
+      </form>
+      </div>
+
+
+
+<!-- The Modal -->
+
 <%- include nav/navbar.ejs %>
 
       <!-- /#sidebar-wrapper -->
@@ -158,40 +169,48 @@
 <div style="text-align:center">Copyright</div>
 </div>
 </div>
-<div class="modal"><!-- Place at bottom of page --></div>
+<%- include member.ejs %>
 </body>
 <script>
-  $( function() {
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 1000,
-      values: [ 75, 300 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+  // Initialize Firebase
+  $(document).ready(function(){
+     $('select').niceSelect();
+     $('#price').niceSelect('destroy');
+  var price = getUrlVars()["price"];
+
+document.getElementById("resultt").innerHTML =decodeURIComponent(price);
+  function getUrlVars()
+  {
+      var vars = [], hash;
+      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+      for(var i = 0; i < hashes.length; i++)
+      {
+          hash = hashes[i].split('=');
+          vars.push(hash[0]);
+          vars[hash[0]] = hash[1];
       }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  } );
-  </script>
+      return vars;
+    }
+  }
+  )
+
+</script>
 <script>
-$body = $("body");
-
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-
-     ajaxStop: function() { $body.removeClass("loading"); }
-});
-$("#sub").on("click", function(){
-  alert(window.location.search);
-
-    $.post("/search");
-});
-$("#idclick").on("click", function(){
-
-    $.post("/id");
-});
+$( function() {
+  var select = $( "#price" );
+  var slider = $( "<br><br><div id='slider'></div>" ).insertAfter( select ).slider({
+    min: 1,
+    max: 6,
+    range: "min",
+    value: select[ 0 ].selectedIndex + 1,
+    slide: function( event, ui ) {
+      select[ 0 ].selectedIndex = ui.value - 1;
+    }
+  });
+  $( "#price" ).on( "change", function() {
+    slider.slider( "value", this.selectedIndex + 1 );
+  });
+} );
 </script>
 <script language="JavaScript" type="text/javascript">
   $(document).ready(function(){
@@ -207,26 +226,6 @@ $("#idclick").on("click", function(){
   });
 
 </script>
-<script>
-$(document).ready(function() {
 
-  $(window).scroll(function () {
-      //if you hard code, then use console
-      //.log to determine when you want the
-      //nav bar to stick.
-      console.log($(window).scrollTop())
-    if ($(window).scrollTop() > 75) {
-      $('#pp').addClass('navbar-fixed');
-    }
-    else {
-      $('#pp').removeClass('navbar-fixed');
-    }
-  });
-});
-</script>
-<script>
-$('.read-more').mouseover(function() {
-   console.log(this.id);
-});
-</script>
+
 </html>
