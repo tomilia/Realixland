@@ -51,11 +51,8 @@ router.get('/', function(req,res,next){
 
 });
 router.get('/search', function(req,res,next){
-  var price=req.query.price;
-  var newPrice = price.replace(/[^0-9\.]/g, ' ');
-  var ress = newPrice.split(" ");
-  console.log(ress[1],ress[5]);
-  CompData.find({categories:req.query.categories}).exec(function (err, docs) {
+var regex = new RegExp(req.query["company"], 'i');
+  CompData.find({company: regex}).exec(function (err, docs) {
         if (err) {
             throw cb(err);
         }

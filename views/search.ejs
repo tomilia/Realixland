@@ -20,22 +20,35 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/trial.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/funky.css">
 </head>
-<body>
+<body onload="myFunction()" style="margin:0;">
+
+
+
 
   <div class="row" id="test">
-    <div class="col-sm-10" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
+    <div class="col-sm-3" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
+    <div class="col-sm-5" >
+      <form action="/search" method="get" id="searchform">
+      <div class="input-group" style="padding-top:5px;">
+          <input type="text" name="company" class="form-control" id="searchbox" placeholder="Search for..." autofocus>
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="submit">搜索</button>
+          </span>
+        </div>
+      </form>
+          </div>
     <div class="col-sm-1 " id="tr0"><a class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-users" aria-hidden="true"></i> 會員註冊</a></div>
         <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
         <div class="col-sm-1" id="tr2">  <a class="btn btn-danger btn-outline" id="join"><i class="fa fa-users" aria-hidden="true"></i> 加入我們</a></div>
 
   </div>
+  <div id="loader"></div>
 
-<h2 style="text-align:center;" id="resultt">Search Result:</h2>
 
-  <div id="wrapper" >
+  <div id="wrapper" style="display:none;" class="animate-bottom">
 
       <!-- Sidebar -->
-      <div id="sidebar-wrapper">
+      <div id="sidebar-wrapper" style="padding-left:0px;">
         <form action="/search" method="get">
 <div class="form-group">
   <label for="exampleSelect1">店舖所在區域</label>
@@ -163,6 +176,61 @@
 </div>
 </div>
 <%- include member.ejs %>
+<script>
+$(function () {
+
+  $("#searchbox").autocomplete({
+      source: function (request, response) {
+         $.ajax({
+            url: "/autocomplete",
+            type: "GET",
+            data: {company:request.term},  // request is the value of search input
+            success: function (data) {
+              // Map response values to fiedl label and value
+               response($.map(data, function (el) {
+                  return {
+                     label: el.company,
+                     value: el._id
+                  };
+                  }));
+               }
+            });
+         },
+
+         // The minimum number of characters a user must type before a search is performed.
+         minLength: 1,
+
+         // set an onFocus event to show the result on input field when result is focused
+         focus: function (event, ui) {
+            this.value = ui.item.label;
+            // Prevent other event from not being execute
+            event.preventDefault();
+         },
+         select: function (event, ui) {
+            // Prevent value from being put in the input:
+            this.value = ui.item.label;
+            // Set the id to the next input hidden field
+            $(this).next("input").val(ui.item.value);
+            // Prevent other event from not being execute
+            event.preventDefault();
+
+            $('#searchform').submit();
+         }
+  });
+
+});
+</script>
+<script>
+function myFunction() {
+    setTimeout(showPage, 500);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("wrapper").style.display = "block";
+}
+</script>
+
 </body>
 <script>
 $( function() {
@@ -217,20 +285,6 @@ document.getElementById("resultt").innerHTML =decodeURIComponent(price);
     }
 });
   });
-
-</script>
-<script>
-$body = $("body");
-
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-
-     ajaxStop: function() { $body.removeClass("loading"); }
-});
-$("#sub").on("click", function(){
-
-    $.get("/search");
-});
 
 </script>
 </html>

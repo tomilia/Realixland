@@ -20,21 +20,31 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/trial.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/funky.css">
 </head>
-<body>
+<body onload="myFunction()" style="margin:0;">
 
-  <div class="row navbar " id="test">
-    <div class="col-sm-10" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
-    <div class="col-sm-1 " id="tr0"><a class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-users" aria-hidden="true"></i> 會員登入</a></div>
+  <div class="row" id="test">
+    <div class="col-sm-3" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
+    <div class="col-sm-5" >
+      <form action="/search" method="get" id="searchform">
+      <div class="input-group" style="padding-top:5px;">
+          <input type="text" name="company" class="form-control" id="searchbox" placeholder="Search for..." >
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="submit">搜索</button>
+          </span>
+        </div>
+      </form>
+          </div>
+    <div class="col-sm-1 " id="tr0"><a class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-users" aria-hidden="true"></i> 會員註冊</a></div>
         <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
         <div class="col-sm-1" id="tr2">  <a class="btn btn-danger btn-outline" id="join"><i class="fa fa-users" aria-hidden="true"></i> 加入我們</a></div>
 
   </div>
+  <div id="loader"></div>
 
-
-  <div id="wrapper" >
+  <div id="wrapper" style="display:none;" class="animate-bottom">
 
       <!-- Sidebar -->
-      <div id="sidebar-wrapper">
+      <div id="sidebar-wrapper" style="padding-left:50px; width:250px;">
         <form action="/search" method="get">
       <div class="form-group">
       <label for="exampleSelect1">店舖所在區域</label>
@@ -170,7 +180,24 @@
 </div>
 </div>
 <%- include member.ejs %>
+<script>
+function myFunction() {
+    setTimeout(showPage, 500);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("wrapper").style.display = "block";
+}
+</script>
 </body>
+<script>
+$(function () {
+  $("#searchbox").focus(function() {
+      window.location = "/search";
+  });
+});
+</script>
 <script>
   // Initialize Firebase
   $(document).ready(function(){

@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var cart = require('./routes/cart');
 var search = require('./routes/search');
-
+var autocomplete = require('./routes/autocomplete');
 var id=require('./routes/id');
 var mongoose=require('mongoose');
 
@@ -14,10 +14,39 @@ var ComData = require('./models/companymodel.js');
 mongoose.connect('mongodb://localhost:27017/3112zone');
 var app = express();
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-CompData = mongoose.model('ComData'); // Declare a new mongoose User
 
+CompData = mongoose.model('ComData'); // Declare a new mongoose User
+app.get('/autocomplete', function(req, res){
+  var regex = new RegExp(req.query["company"], 'i');
+  var query = CompData.find({company: regex}).limit(5);
+     // Execute query in a callback and return users list
+ query.exec(function(err, users) {
+     if (!err) {
+       var result = buildResultSet(users);
+function buildResultSet(docs) {
+ var result = [];
+ for(var object in docs){
+   result.push(docs[object]);
+ }
+ return result;
+}
+        // Method to construct the json result set
+        res.send(result, {
+           'Content-Type': 'application/json'
+        }, 200);
+
+        console.log(result);
+     } else {
+        res.send(JSON.stringify(err), {
+           'Content-Type': 'application/json'
+        }, 404);console.log("404");
+     }
+  });
+
+});
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -30,6 +59,7 @@ app.use('/', index);
 app.use('/cart', cart);
 app.use('/search', search);
 app.use('/id', id);
+app.use('/autocomplete', autocomplete);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
