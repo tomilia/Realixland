@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui.css">
+<script src="stylesheets/jquery.typeahead.min.js"></script>
+<link rel="stylesheet" href="stylesheets/jquery.typeahead.min.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/trial.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/funky.css">
@@ -26,16 +28,24 @@
 
 
   <div class="row" id="test">
-    <div class="col-sm-3" ><h2 style="padding-left:100px;">Relaxilan</h2></div>
+    <div class="col-sm-3" ><h2 style="padding-left:100px;"><i class="fa fa-star"></i>Relaxilan</h2></div>
     <div class="col-sm-5" >
-      <form action="/search" method="get" id="searchform">
-      <div class="input-group" style="padding-top:5px;">
-          <input type="text" name="company" class="form-control" id="searchbox" placeholder="Search for..." autofocus>
-          <span class="input-group-btn">
-            <button class="btn btn-info" type="submit">搜索</button>
-          </span>
+      <form id="searchform" action="/search" method="get">
+        <div class="typeahead__container" style="padding-top:5px;">
+            <div class="typeahead__field" >
+
+                <span class="typeahead__query">
+                    <input class="form-control" name="company" type="search" placeholder="Search" autocomplete="off" autofocus>
+                </span>
+                <span class="typeahead__button">
+                    <button type="submit">
+                        <i class="typeahead__search-icon"></i>
+                    </button>
+                </span>
+
+            </div>
         </div>
-      </form>
+    </form>
           </div>
     <div class="col-sm-1 " id="tr0"><a class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-users" aria-hidden="true"></i> 會員註冊</a></div>
         <div class="col-sm-1 " id="tr"><a class="btn btn-primary btn-outline" id="contact"><i class="fa fa-users" aria-hidden="true"></i> 聯絡我們</a></div>
@@ -176,50 +186,7 @@
 </div>
 </div>
 <%- include member.ejs %>
-<script>
-$(function () {
 
-  $("#searchbox").autocomplete({
-      source: function (request, response) {
-         $.ajax({
-            url: "/autocomplete",
-            type: "GET",
-            data: {company:request.term},  // request is the value of search input
-            success: function (data) {
-              // Map response values to fiedl label and value
-               response($.map(data, function (el) {
-                  return {
-                     label: el.company,
-                     value: el._id
-                  };
-                  }));
-               }
-            });
-         },
-
-         // The minimum number of characters a user must type before a search is performed.
-         minLength: 1,
-
-         // set an onFocus event to show the result on input field when result is focused
-         focus: function (event, ui) {
-            this.value = ui.item.label;
-            // Prevent other event from not being execute
-            event.preventDefault();
-         },
-         select: function (event, ui) {
-            // Prevent value from being put in the input:
-            this.value = ui.item.label;
-            // Set the id to the next input hidden field
-            $(this).next("input").val(ui.item.value);
-            // Prevent other event from not being execute
-            event.preventDefault();
-
-            $('#searchform').submit();
-         }
-  });
-
-});
-</script>
 <script>
 function myFunction() {
     setTimeout(showPage, 500);
@@ -232,6 +199,77 @@ function showPage() {
 </script>
 
 </body>
+<script>
+
+	$.typeahead({
+		input: '.form-control',
+    minLength:1,
+    maxItem: 8,
+    order:"asc",
+		hint: true,
+		display: ["company","address"],
+    emptyTemplate: 'No result for "{{query}}"',
+    dropdownFilter: [{
+    key: 'categories',
+    template: '<strong>{{categories}}</strong> 城市',
+    all: '任何城市'
+}],
+    template: '<span>' +
+        '<span class="name">{{company}}</span>' +
+        '<br><span class="division" style="color:#c3c3c3;">(深圳, {{address}}, {{categories}})</span>' +
+        '<span class="team-logo" style="color:#999900;">' +
+            '<%for(var x=0;x<5;x++){%><i class="fa fa-star" style="float:right;" aria-hidden="true"></i><%}%>' +
+        '</span>' +
+    '</span>',
+        correlativeTemplate:true,
+		source: {
+			url: "/autocomplete" // Ajax request to get JSON from the action url
+		},
+		callback: {
+      onNavigateAfter: function (node, lis, a, item, query, event) {
+         if (~[38,40].indexOf(event.keyCode)) {
+             var resultList = node.closest("form").find("ul.typeahead__list"),
+                 activeLi = lis.filter("li.active"),
+                 offsetTop = activeLi[0] && activeLi[0].offsetTop - (resultList.height() / 2) || 0;
+
+             resultList.scrollTop(offsetTop);
+         }
+
+     },
+
+     onResult: function (node, query, result, resultCount) {
+         if (query === "") return;
+
+         var text = "";
+         if (result.length > 0 && result.length < resultCount) {
+             text = "Showing <strong>" + result.length + "</strong> of <strong>" + resultCount + '</strong> elements matching "' + query + '"';
+         } else if (result.length > 0) {
+             text = 'Showing <strong>' + result.length + '</strong> elements matching "' + query + '"';
+         } else {
+             text = 'No results matching "' + query + '"';
+         }
+         $('#result-container').html(text);
+       },
+onMouseEnter: function (node, a, item, event) {
+
+      $(a).append('<span class="flag-chart flag-' + item.display.replace(' ', '-').toLowerCase() + '"></span>')
+
+
+},
+onMouseLeave: function (node, a, item, event) {
+
+  $(a).find('.flag-chart').remove();
+
+},
+
+			// Redirect to url after clicking or pressing enter
+			onClickAfter: function (node, a, item, event) {
+				window.location.href = "/id/"+item._id; // Set window location to site url
+			}
+		}
+	});
+
+</script>
 <script>
 $( function() {
   var select = $( "#price" );

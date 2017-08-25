@@ -4,7 +4,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
-var cart = require('./routes/cart');
 var search = require('./routes/search');
 var autocomplete = require('./routes/autocomplete');
 var id=require('./routes/id');
@@ -21,7 +20,7 @@ app.set('view engine', 'ejs');
 CompData = mongoose.model('ComData'); // Declare a new mongoose User
 app.get('/autocomplete', function(req, res){
   var regex = new RegExp(req.query["company"], 'i');
-  var query = CompData.find({company: regex}).limit(5);
+  var query = CompData.find({company: regex});
      // Execute query in a callback and return users list
  query.exec(function(err, users) {
      if (!err) {
@@ -56,7 +55,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/cart', cart);
 app.use('/search', search);
 app.use('/id', id);
 app.use('/autocomplete', autocomplete);
