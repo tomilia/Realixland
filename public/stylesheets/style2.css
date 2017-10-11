@@ -1,217 +1,259 @@
-/*
-    DEMO STYLE
+@import url("https://bootswatch.com/flatly/bootstrap.min.css");
+body{
+  padding-top:40px;
+max-width: 1420px;
+}
+.cd-filter-block .cd-filter-content
+{
+  list-style-type: none;
+}
+.cd-filter-block .checkbox-label::after {
+  /* check mark style for check boxes */
+  width: 16px;
+  height: 16px;
+  background: url("../img/cd-icon-check.svg") no-repeat center center;
+}
+.cd-filter-block h4 {
+  /* filter block title */
+  position: relative;
+  margin-bottom: .2em;
+  padding: 10px 0 10px 20px;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.3rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.no-touch .cd-filter-block h4:hover {
+  color: #33AA99;
+}
+.cd-filter-block h4::before {
+  /* arrow */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: url("../stylesheets/cd-icon-arrow.svg") no-repeat center center;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+.cd-filter-block h4.closed::before {
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+  -moz-transform: translateY(-50%) rotate(-90deg);
+  -ms-transform: translateY(-50%) rotate(-90deg);
+  -o-transform: translateY(-50%) rotate(-90deg);
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.navbar{
+background-color: #ffffff;
+box-shadow: 1px 1px 1px #CCCCCC ;
+}
+
+/*Time for the CSS*/
+.disabled { pointer-events: none; cursor: default; }
+.slider{
+/*Same as width of the large image*/
+	position: relative;
+	/*Instead of height we will use padding*/
+	padding-top: 320px; /*That helps bring the labels down*/
+
+	margin: 50px auto;
+
+	/*Lets add a shadow*/
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+}
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+
+.btn-default.btn-outline.active {
+    color: #ffffff;
+}
+.btn-default.btn-outline {
+    color: #acacac;
+}
+
+/*Last thing remaining is to add transitions*/
+.slider>img{
+	position: absolute;
+	left: 0; top: 0;
+	transition: all 0.5s;
+  width:100%;
+  height:100%
+}
+
+.slider input[name='slide_switch'] {
+	display: none;
+}
+
+.slider label {
+	/*Lets add some spacing for the thumbnails*/
+	margin: 5% 0 0 5%;
+	border: 3px solid #999;
+
+	float: left;
+	cursor: pointer;
+	transition: all 0.5s;
+
+	/*Default style = low opacity*/
+	opacity: 0.6;
+}
+
+.slider label img{
+	display: block;
+}
+
+/*Time to add the click effects*/
+.slider input[name='slide_switch']:checked+label {
+	border-color: #666;
+	opacity: 1;
+}
+/*Clicking any thumbnail now should change its opacity(style)*/
+/*Time to work on the main images*/
+.slider input[name='slide_switch'] ~ img {
+	opacity: 0;
+	transform: scale(1.1);
+}
+/*That hides all main images at a 110% size
+On click the images will be displayed at normal size to complete the effect
 */
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-
-.topnav {
-  z-index:999;
-  position:relative;
-  float:right;
-    background-color: #333;
-    overflow: hidden;
+.slider input[name='slide_switch']:checked+label+img {
+	opacity: 1;
+	transform: scale(1);
 }
 
-/* Style the links inside the navigation bar */
-.topnav a {
-    float: left ;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+/*Clicking on any thumbnail now should activate the image related to it*/
+
+/*We are done :)*/
+footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.sidebar-nav{
+      min-height: 200vh;
+      background-color: #ffffff;
+}
+/* CSS used here will be applied after bootstrap.css */.nav { margin-bottom: 0; }
+.nav > li.dropdown.open { position: static; }
+.nav > li.dropdown.open .dropdown-menu {display:table; width: 100%; text-align: center; left:0; right:0; }
+.dropdown-menu>li { display: table-cell; }
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+ @media (min-width: 320px) and (max-width: 899px) {
+
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-    display: block;
-}
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .col-md-5{
+    background-color: black;
+    height:520px;
   }
-}
-
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
+  .slider{
+    box-shadow: 0px 0px 0px #ffffff;
   }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
+  .slider label{
+left:15%;
+
   }
-
-}
-
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-#sidebar {
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
-    background: #fff;
-    color: #000;
-    transition: all 0.3s;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #fff;
-
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #fff;
-}
-
-#sidebar ul p {
-    color: #000;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-    border-top-style:outset;
-    border-color: #000;
-    border-width: thin;
-
-}
-#sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #000;
-    background: #fff;
-}
-
-
-a[data-toggle="collapse"] {
+  .slider>img{
+  	position: absolute;
+left:10%;
+  	transition: all 0.5s;
+    width:70%;
+    height:100%
+  }
+  .row-offcanvas {
     position: relative;
-}
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
 
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
-}
-a[aria-expanded="true"]::before {
-    content: '\e260';
-}
+  }
 
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -40%;
+  }
 
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #fff;
-}
+  .row-offcanvas-left.active {
+    left: 40%;
 
-ul.CTAs {
-    padding: 20px;
-}
+  }
 
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-a.download {
-    background: #fff;
-    color: #fff;
-}
-a.article, a.article:hover {
-    background: #6d7fcc !important;
-    color: #fff !important;
-}
-
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    width: calc(100% - 250px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
+  .sidebar-offcanvas {
     position: absolute;
     top: 0;
-    right: 0;
+    width: 40%;
+  }
+
+  .dropdown-menu>li { display: block; }
+
+  .col-md-4{
+ display: inline-block;
+ width:80%
+  }
 }
-#content.active {
-    width: 100%;
-}
+@media screen and (max-width: 768px) {
+  .col-md-5{
+    background-color: black;
+    height:520px;
+  }
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -40%;
+  }
+
+  .row-offcanvas-left.active {
+    left: 40%;
+
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 40%;
+  }
+
+  .dropdown-menu>li { display: block; }
 
 
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-    }
-    #content.active {
-        width: calc(100% - 250px);
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
+}
+#searchfield{
+
+  max-width:550px;
+}
+.navbar-form {
+  width:550px;
+
+}
+#sidebar {
+          box-shadow: 1px 0 1px -1px #bbbbbb;
+          background-color: #fff;
+    margin-top:20px;
 }

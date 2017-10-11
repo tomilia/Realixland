@@ -7,8 +7,10 @@ var index = require('./routes/index');
 var search = require('./routes/search');
 var autocomplete = require('./routes/autocomplete');
 var id=require('./routes/id');
+var login=require('./routes/login');
 var mongoose=require('mongoose');
-
+var passport = require('passport');
+var flash    = require('connect-flash');
 var ComData = require('./models/companymodel.js');
 mongoose.connect('mongodb://localhost:27017/3112zone');
 var app = express();
@@ -37,7 +39,6 @@ function buildResultSet(docs) {
            'Content-Type': 'application/json'
         }, 200);
 
-        console.log(result);
      } else {
         res.send(JSON.stringify(err), {
            'Content-Type': 'application/json'
@@ -46,6 +47,7 @@ function buildResultSet(docs) {
   });
 
 });
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -53,10 +55,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize());
+app.use(passport.session()); 										// 紀錄 session
+app.use(flash());
 app.use('/', index);
 app.use('/search', search);
 app.use('/id', id);
+app.use('/login', login);
 app.use('/autocomplete', autocomplete);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
