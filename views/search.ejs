@@ -18,7 +18,8 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
+  <script src="../stylesheets/tagmanager.js"></script>
+  <link rel="stylesheet" href="../stylesheets/tagmanager.css">
   <script src="../stylesheets/jquery.typeahead.min.js"></script>
   <link rel="stylesheet" href="../stylesheets/font-awesome.css">
   <link rel="stylesheet" href="../stylesheets/jquery.typeahead.min.css">
@@ -160,6 +161,7 @@ body {
 
         <div class="filter-box" data-reactid="170" style="">
 
+
             <div class="popover" style=
             "max-width: 510px; top: 261px; left: 674px; display: none;" data-reactid="171">
               <div class="arrow" data-reactid="172"></div>
@@ -187,63 +189,63 @@ body {
                 <div class="tags" data-reactid="180" >
                   <div class="tag-group tag-group-expend" data-reactid="181" >
                     <div data-reactid="182" >
-                      <a class="tag tag-expend " href="javascript:void(0);" data-reactid=
+                      <a class="tag tag-expend " onclick="getLocation();" data-reactid=
                       "183" style="color:#5bc0de;"><span data-reactid="184">最近位置 <i class="fa fa-location-arrow" aria-hidden="true"></i></span></a>
                     </div>
                     <p></p>
                     <div class="dropdown show">
-                      <button class="tag-expend btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="tag-expend btn btn-outline-secondary btn-sm dropdown-toggle" id="szbtn" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span data-reactid="184">深圳</span>
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:550px;">
                         <div class="container">
                           <div class="label" style="margin-left:13px;"><h4 style="color:#666">深圳市</h4></div>
                           <hr>
-    <div class="row">
-
+    <div class="sz-row">
+    <div class="row ">
         <div class="col-md-2 offset-md-1">
           <div class="multi-column">
-            <a class="dropdown-item" href="#">??區</a>
-            <a class="dropdown-item" href="#">??區</a>
+            <a class="dropdown-item" id="aaa" style="">aaa區</a>
+            <a class="dropdown-item" id="bbb" onclick>bbb區</a>
 
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="multi-column">
-            <a class="dropdown-item" href="#">??區</a>
-            <a class="dropdown-item" href="#">??區</a>
+            <a class="dropdown-item" id="ccc" onclick="alert($(this).attr('id');)">ccc區</a>
+            <a class="dropdown-item" id="ddd"  onclick="alert($(this).attr('id');)">ddd區</a>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="multi-column">
-            <a class="dropdown-item" href="#">??區</a>
-            <a class="dropdown-item" href="#">??區</a>
+            <a class="dropdown-item" id="5" onclick="alert($(this).attr('id');)">??區</a>
+            <a class="dropdown-item" id="6" onclick="alert($(this).attr('id');)">??區</a>
           </div>
         </div>
 
         <div class="col-md-2">
           <div class="multi-column">
-            <a class="dropdown-item" href="#">??區</a>
-            <a class="dropdown-item" href="#">??區</a>
+            <a class="dropdown-item" id="7" onclick="alert($(this).attr('id');)">??區</a>
+            <a class="dropdown-item" id="8" onclick="alert($(this).attr('id');)">??區</a>
           </div>
         </div>
         <div class="col-md-2">
           <div class="multi-column">
-            <a class="dropdown-item" href="#">??區</a>
-            <a class="dropdown-item" href="#">??區</a>
+            <a class="dropdown-item" id="9" onclick="alert($(this).attr('id');)">??區</a>
+            <a class="dropdown-item" id="10" onclick="alert($(this).attr('id');)">??區</a>
           </div>
         </div>
         <div class="col-md-2">
           <div class="multi-column">
-            <a class="dropdown-item" href="#">??區</a>
-            <a class="dropdown-item" href="#">??區</a>
+            <a class="dropdown-item" id="11" onclick="alert($(this).attr('id');)">??區</a>
+            <a class="dropdown-item" id="12" onclick="alert($(this).attr('id');)">??區</a>
           </div>
         </div>
 
     </div>
-
+  </div>
 </div>
                       </div>
 </div>
@@ -314,7 +316,6 @@ body {
       <div class="label" style="margin-left:13px;"><h4 style="color:#666">? ? 市</h4></div>
       <hr>
 <div class="row">
-
 <div class="col-md-2 offset-md-1">
 <div class="multi-column">
 <a class="dropdown-item" href="#">??區</a>
@@ -368,238 +369,40 @@ body {
 
               <div class="filter-component" data-reactid="248">
                 <div class="label" data-reactid="249">
-                  <label><h5>種類</h5></label><a class=
-                  "tag tag-solid tag-large" href="javascript:void(0);" data-reactid=
+                  <label><h5>種類</h5></label><a class="tag tag-solid tag-large" href="javascript:void(0);" data-reactid=
                   "251"><span data-reactid="252">&#20840;&#37096;</span></a>
                 </div>
 
-                <div class="tags" data-reactid="253">
+                <div class="tags " data-reactid="253">
+                  <div class="categories-tags">
                   <div class="tag-group tag-group-expend" data-reactid="254">
                     <div class="dropdown show">
-                      <button class="tag-expend btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="tag-expend btn btn-outline-secondary btn-sm" id="www" style="background-color:#ffffff;color:#999999;" >
                         <span data-reactid="184">? ?</span>
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:550px;">
-                        <div class="container">
-                    <div class="label" style="margin-left:13px;"><h4 style="color:#666">? ? 市</h4></div>
-                    <hr>
-                    <div class="row">
 
-                    <div class="col-md-2 offset-md-1">
-                    <div class="multi-column">
-                    <a class="dropdown-item" href="#">??區</a>
-                    <a class="dropdown-item" href="#">??區</a>
-
-                    </div>
-                    </div>
-
-                    <div class="col-md-2">
-                    <div class="multi-column">
-                    <a class="dropdown-item" href="#">??區</a>
-                    <a class="dropdown-item" href="#">??區</a>
-                    </div>
-                    </div>
-
-                    <div class="col-md-2">
-                    <div class="multi-column">
-                    <a class="dropdown-item" href="#">??區</a>
-                    <a class="dropdown-item" href="#">??區</a>
-                    </div>
-                    </div>
-
-                    <div class="col-md-2">
-                    <div class="multi-column">
-                    <a class="dropdown-item" href="#">??區</a>
-                    <a class="dropdown-item" href="#">??區</a>
-                    </div>
-                    </div>
-                    <div class="col-md-2">
-                    <div class="multi-column">
-                    <a class="dropdown-item" href="#">??區</a>
-                    <a class="dropdown-item" href="#">??區</a>
-                    </div>
-                    </div>
-                    <div class="col-md-2">
-                    <div class="multi-column">
-                    <a class="dropdown-item" href="#">??區</a>
-                    <a class="dropdown-item" href="#">??區</a>
-                    </div>
-                    </div>
-
-                    </div>
-
-                    </div>
-                      </div>
                     </div>
 
 <div class="dropdown show">
-  <button class="tag-expend btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="tag-expend btn btn-outline-secondary btn-sm " id="xxx" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span data-reactid="184">? ?</span>
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:550px;">
-    <div class="container">
-<div class="label" style="margin-left:13px;"><h4 style="color:#666">? ? 市</h4></div>
-<hr>
-<div class="row">
-
-<div class="col-md-2 offset-md-1">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-
-</div>
-</div>
-
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-</div>
-
-</div>
-  </div>
 </div>
 
 <div class="dropdown show">
-  <button class="tag-expend btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="tag-expend btn btn-outline-secondary btn-sm" id="yyy" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span data-reactid="184">? ?</span>
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:550px;">
-    <div class="container">
-<div class="label" style="margin-left:13px;"><h4 style="color:#666">? ? 市</h4></div>
-<hr>
-<div class="row">
-
-<div class="col-md-2 offset-md-1">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-
-</div>
-</div>
-
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-<div class="col-md-2">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-</div>
-
-</div>
-  </div>
 </div>
 
 <div class="dropdown show">
-  <button class="tag-expend" id="dropdownMenuButton" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="tag-expend btn btn-outline-secondary" id="zzz" style="background-color:#ffffff;color:#999999;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span data-reactid="184">? ?</span>
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:400px; border:1px solid #229922  ;">
-    <div class="container">
-<div class="label" style="margin-left:13px;"><h4 style="color:#666">? ? 市</h4></div>
-<hr>
-<div class="row">
 
-<div class="col-md-3 offset-md-1">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="multi-column">
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-<a class="dropdown-item" href="#">??區</a>
-</div>
-</div>
-
-
-</div>
-
-</div>
-  </div>
 </div>
                   </div>
+                </div>
                 </div>
               </div>
 
@@ -675,12 +478,20 @@ body {
           <form style="min-width:100%;">
 
      <div class="form-row" style="margin-top:15px;">
-       <%if (sort==-1){%>
-       <a id="<%= sort %>" class="col-form-label price-fil" >價格排序</a>
-      <%}else if(sort==1){%>
+       <%if (sort=="price-lh"){%>
+       <a id="<%= sort %>" class="col-form-label price-fil" >價格排序 低至高</a>
+      <%}else if(sort=="price-hl"){%>
        <a id="<%= sort %>" class="col-form-label price-fil" >價格排序  高至低</a>
-       <%}%>
-     <a for="inputEmail3" class="col-form-label" >評分排序</label>
+       <%}else if(sort==-1||sort=="rating-hl"||sort=="rating-lh"){%>
+         <a id="<%= sort %>" class="col-form-label price-fil" >價格排序</a>
+         <%}%>
+         <%if (sort=="rating-lh"){%>
+         <a id="<%= sort %>" class="col-form-label rating-fil" >評分排序 低至高</a>
+        <%}else if(sort=="rating-hl"){%>
+         <a id="<%= sort %>" class="col-form-label rating-fil" >評分排序  高至低</a>
+         <%}else if(sort==-1||sort=="price-hl"||sort=="price-lh"){%>
+           <a id="<%= sort %>" class="col-form-label rating-fil" >評分排序</a>
+           <%}%>
 
      </div>
 
@@ -694,11 +505,15 @@ body {
       </nav>
 
     </div>
+    <div class="row tagsin">
+            <input type="text" type="hidden" style="display:none" id="tagsinput" />
+
+    </div>
     <div class="row" >
       <div class="result-content">
       <% var index=docs.length;for(var media=0; media<index;media++){ %>
 
-      <div class="content-media" style=" margin-top:20px;height:220px;">
+      <div class="content-media" style=" height:220px;">
       <div class="card">
       <div class="row ">
 
@@ -719,9 +534,9 @@ body {
     <%}%>
   </div>
 </div>
-<div class="pagniation">
-  <nav aria-label="Page navigation example">
-  <div class="container" style="margin-top:50px;margin-bottom:10px;min-width:800px;height:100px;">
+  <nav aria-label="Page navigation example ">
+  <div class="container " style="margin-top:50px;margin-bottom:10px;min-width:800px;height:100px;">
+    <div class="pagniation">
     <% if (totalPages > 0) { %>
 <ul class="pagination pagination-lg justify-content-center">
   <% if (currentPage > 1) { %>
@@ -749,10 +564,10 @@ body {
   <% } %>
 </ul>
 <% } %>
-
+  </div>
   </div>
 </nav>
-</div>
+
 </div>
 
     </div>
@@ -772,12 +587,178 @@ body {
 </footer>
 </body>
 <script>
+$(document).ready(
+  function(){
+    $('#tagsinput').tagsManager({
 
-$(".filtering a").on('click', function() {
+    });
+    alert("<%=categories%>");
+      if("<%=name%>"=="");
+      else {$("#tagsinput").tagsManager('pushTag','<%=name%>');}
+      if("<%=location%>"=="");
+      else {$("#tagsinput").tagsManager('pushTag',"<%=location%>");}
+      if("<%=categories%>"=="");
+      else {$('#tagsinput').tagsManager('pushTag',"<%=categories%>");}
+//tags button remove func
+    $("#tagsinput").on('tm:spliced', function(e, tag) {
+var originurl=window.location.href;
+var urltoremove="/search/filtering?"+window.location.href.split('?')[1];
+  $.ajax({
+    url:urltoremove,success: function(data) {
+      alert("AJAX:"+ tag);
+
+      if(tag==data.location)
+      {   originurl=removeURLParameter(window.location.href,"location");
+      ajaxretrievecall(removeURLParameter(urltoremove,"location"));
+      history.pushState(null,null,originurl);
+    }
+      else if (tag==data.name)
+      {
+        originurl=removeURLParameter(window.location.href,"company");
+
+        history.pushState(null,null,originurl);
+      ajaxretrievecall(removeURLParameter(urltoremove,"company"));
+
+    }
+    else if (tag==data.categories)
+    {
+      originurl=removeURLParameter(window.location.href,"categories");
+
+      history.pushState(null,null,originurl);
+    ajaxretrievecall(removeURLParameter(urltoremove,"categories"));
+
+  }
+    }
+  });
+
+});
+}
+);
+function ajaxretrievecall(url)
+{
+  $.ajax({
+      url:url,success: function(data){
+        $(".result-content").empty();
+
+        var index=data.docs.length;
+          for(var media=0; media<index;media++)
+        {
+        $(".result-content").append("<div class='content-media' style=' height:220px;'><div class='card'><div class='row '><div class='col-md-8 px-3'><div class='card-block px-3'><h4 class='card-title'>"+data.docs[media].company+"</h4><p class='card-text'>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>  </div></div><div class='col-md-4'><img src='http://www.morrells.co.za/wp-content/uploads/2013/08/FH-Lounge-3--380x380.jpg' class='w-100 h-100'></div></div></div></div>");
+
+
+
+        }
+      }
+  });
+}
+function pagination(){
+
+}
+
+function removeURLParameter(url, parameter) {
+    //prefer to use l.search if you have a location/link object
+    var urlparts= url.split('?');
+    if (urlparts.length>=2) {
+
+        var prefix= encodeURIComponent(parameter)+'=';
+        var pars= urlparts[1].split(/[&;]/g);
+
+        //reverse iteration as may be destructive
+        for (var i= pars.length; i-- > 0;) {
+            //idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                pars.splice(i, 1);
+            }
+        }
+
+        url= urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+        return url;
+    } else {
+        return url;
+    }
+}
+function getCurrentpagelocation(location){
+  return location;
+}
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+$(".categories-tags button").on("click",function(){
+  var temp;
+
+  temp=$(this).attr('id');
+
+    $("#"+getParameterByName("categories",window.location.href)).css("background-color","#ffffff");
+  pageUrl = updateQueryStringParameter(window.location.href,"categories",temp);
+  $.ajax({
+
+      url: "/search/filtering?"+pageUrl.split('?')[1], success: function(data) {
+
+        $("#"+data.location).addClass("active");
+        $(".result-content").empty();
+        $(".pagination").empty();
+        var index=data.docs.length;
+          for(var media=0; media<index;media++)
+        {
+        $(".result-content").append("<div class='content-media' style=' height:220px;'><div class='card'><div class='row '><div class='col-md-8 px-3'><div class='card-block px-3'><h4 class='card-title'>"+data.docs[media].company+"</h4><p class='card-text'>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>  </div></div><div class='col-md-4'><img src='http://www.morrells.co.za/wp-content/uploads/2013/08/FH-Lounge-3--380x380.jpg' class='w-100 h-100'></div></div></div></div>");
+
+
+
+        }
+    $("#tagsinput").tagsManager("pushTag",data.categories);
+      }
+  });
+  history.pushState(null,null,pageUrl);
+});
+$(".sz-row a").on("click",function(){
+  var temp;
+
+  temp=$(this).attr('id');
+
+    $("#"+getParameterByName("location",window.location.href)).css("background-color","#ffffff");
+  pageUrl = updateQueryStringParameter(window.location.href,"location",temp);
+  $.ajax({
+
+      url: "/search/filtering?"+pageUrl.split('?')[1], success: function(data) {
+
+        $("#"+data.location).addClass("active");
+        $(".result-content").empty();
+        $(".pagination").empty();
+        var index=data.docs.length;
+          for(var media=0; media<index;media++)
+        {
+        $(".result-content").append("<div class='content-media' style=' height:220px;'><div class='card'><div class='row '><div class='col-md-8 px-3'><div class='card-block px-3'><h4 class='card-title'>"+data.docs[media].company+"</h4><p class='card-text'>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>  </div></div><div class='col-md-4'><img src='http://www.morrells.co.za/wp-content/uploads/2013/08/FH-Lounge-3--380x380.jpg' class='w-100 h-100'></div></div></div></div>");
+
+
+
+        }
+    $("#tagsinput").tagsManager("pushTag",data.location);
+      }
+  });
+  history.pushState(null,null,pageUrl);
+});
+
+
+$(".")
+
+$(".price-fil").on('click', function() {
   var temp="";
-if($(this).attr('id')==-1)
-{temp="rating-hl";$('.price-fil').html("<a id="+$(this).attr('id')+" class='col-form-label price-fil' >價格排序 高至低</a>");$(this).attr('id',1);}else
-{temp="rating-lh";$('.price-fil').html("<a id="+$(this).attr('id')+" class='col-form-label price-fil' >價格排序</a>");$(this).attr('id',-1);}
+
+$(".rating-fil").attr('id',-1);
+$(".rating-fil").html("<a id="+$(".rating-fil").attr('id')+" class='col-form-label rating-fil' >評分排序</a>");
+if($(this).attr('id')==-1||$(this).attr('id')=="price-lh")
+{temp="price-lh";
+  $(this).html("<a id="+$(this).attr('id')+" class='col-form-label price-fil' >價格排序 低至高</a>");
+  $(this).attr('id',1);
+}
+else
+{temp="price-hl";$(this).html("<a id="+$(this).attr('id')+" class='col-form-label price-fil' >價格排序 高至低</a>");$(this).attr('id',-1);}
 
     pageUrl = updateQueryStringParameter(window.location.href,"asc",temp);
     $.ajax({
@@ -787,7 +768,43 @@ if($(this).attr('id')==-1)
           var index=data.docs.length;
             for(var media=0; media<index;media++)
           {
-          $(".result-content").append("<div class='content-media' style=' margin-top:20px;height:220px;'><div class='card'><div class='row '><div class='col-md-8 px-3'><div class='card-block px-3'><h4 class='card-title'>"+data.docs[media].company+"</h4><p class='card-text'>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>  </div></div><div class='col-md-4'><img src='http://www.morrells.co.za/wp-content/uploads/2013/08/FH-Lounge-3--380x380.jpg' class='w-100 h-100'></div></div></div></div>");
+          $(".result-content").append("<div class='content-media' style=' height:220px;'><div class='card'><div class='row '><div class='col-md-8 px-3'><div class='card-block px-3'><h4 class='card-title'>"+data.docs[media].company+"</h4><p class='card-text'>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>  </div></div><div class='col-md-4'><img src='http://www.morrells.co.za/wp-content/uploads/2013/08/FH-Lounge-3--380x380.jpg' class='w-100 h-100'></div></div></div></div>");
+          }
+        }
+    });
+    history.pushState(null,null,pageUrl);
+    window.addEventListener('popstate', function(event) {
+	  var state = history.state;
+	  if(state == null){
+		  console.log('null');
+		  history.replaceState(null,null,"/");
+      location.replace("/");
+		  return;
+	  }else{
+		  console.log(state.page);
+		  $('#txt').html(state.contents); // 直接从state中取内容，减少http请求
+	  }
+
+	});
+});
+$(".rating-fil").on('click', function() {
+  var temp="";
+  $(".price-fil").attr('id',-1);
+  $(".price-fil").html("<a id="+$(".price-fil").attr('id')+" class='col-form-label price-fil' >價格排序</a>");
+if($(this).attr('id')==-1||$(this).attr('id')=="rating-lh")
+{temp="rating-hl";$(this).html("<a id="+$(this).attr('id')+" class='col-form-label price-fil' >評分排序 高至低</a>");$(this).attr('id',1);}
+else
+{temp="rating-lh";$(this).html("<a id="+$(this).attr('id')+" class='col-form-label price-fil' >評分排序 低至高</a>");$(this).attr('id',-1);}
+
+    pageUrl = updateQueryStringParameter(window.location.href,"asc",temp);
+    $.ajax({
+        url: "/search/filtering?"+pageUrl.split('?')[1], success: function(data) {
+
+          $(".result-content").empty();
+          var index=data.docs.length;
+            for(var media=0; media<index;media++)
+          {
+          $(".result-content").append("<div class='content-media' style=' height:220px;'><div class='card'><div class='row '><div class='col-md-8 px-3'><div class='card-block px-3'><h4 class='card-title'>"+data.docs[media].company+"</h4><p class='card-text'>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>  </div></div><div class='col-md-4'><img src='http://www.morrells.co.za/wp-content/uploads/2013/08/FH-Lounge-3--380x380.jpg' class='w-100 h-100'></div></div></div></div>");
           }
         }
     });
@@ -826,6 +843,24 @@ function updateQueryStringParameter(uri, key, value) {
   }
 }
 </script>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    alert("Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude);
+}
+</script>
+
 <script>
 
 
